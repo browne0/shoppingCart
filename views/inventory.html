@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<span class="navbar-brand">Work & Co Shopping Cart Challenge</span>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#/codeChallenges/work&co">Add an Item</a></li>
+					<li class='active'><a href="#/inventory">Inventory List</a></li> 
+					<li><a href="#/basket">Shopping Basket</a></li> 
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container" id='inventoryList'>
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1 col-xs-6 col-xs-offset-3">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">Inventory List</h2>
+					</div>
+					<div class="panel-body" ng-controller='InventoryListController'>
+						<strong ng-if='itemList.length == 0'>There seems to be no items in the inventory. Click <a href="#/">here</a> to add an item to the inventory.</strong>
+						<div class="row" ng-repeat='item in itemList'>
+							<div class="item pull-left">
+								<img src='http://placekitten.com/160/160' alt="">
+								<div class="itemDescription">
+									<label for="">
+										<span class="itemTitle">{{ item.title }}</span>
+
+										<span class="itemCreator">by {{ item.manufacturer }}</span>
+
+										<span class="itemPrice">
+											<b>{{ item.price | currency}}</b>
+										</span>
+
+										<span class="itemStock">
+											Available in Stock: {{ item.inventoryQuantity }} units
+										</span>
+									</label>
+								</div>
+
+							</div>
+							<div class="itemActions pull-right">
+								<div class="input-group col-lg-5 col-lg-offset-7 itemQuantity">
+									<input type="number" class="form-control" placeholder="Quantity (e.g. 1, 2, 3)" ng-model='item.basketQuantity'>
+								</div>
+								<button type="button" class="btn btn-primary" ng-click='addToBasket(item)' ng-disabled='item.inventoryQuantity - item.basketQuantity < 0 || item.basketQuantity == null || item.basketQuantity == "" || item.basketQuantity < 0'>
+									Add To Basket
+								</button>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

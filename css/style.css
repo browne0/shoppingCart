@@ -1,0 +1,135 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	padding-top: 100px;
+}
+
+/* ADD AN ITEM */
+
+#addAnItem .row {
+	padding: 15px 0px;
+}
+
+#addAnItem .panel-body {
+	position: relative;
+}
+
+#addAnItem .panel-body input[type="text"], #addAnItem .panel-body input[type="number"] {
+	width: 50%;
+	position: absolute;
+	left: 165px;
+}
+
+#addAnItem .panel-body p {
+	width: 150px;
+	margin: 5px 0px 0px 0px;
+	text-align: right;
+	color: black;
+}
+
+#addAnItem .panel-body form input[type="button"] {
+	margin-left: 15px;
+}
+
+#addAnItem .ng-invalid.ng-touched {
+	background: rgba(255,0,0,.2);
+	-o-transition: all .4s;
+	-moz-transition: all .4s;
+	-webkit-transition: all .4s;
+	-ms-transition: all .4s;
+	transition: all .4s;
+}
+
+#addAnItem .ng-valid.ng-touched {
+	background: rgba(0,128,0,.2);
+	-o-transition: all .4s;
+	-moz-transition: all .4s;
+	-webkit-transition: all .4s;
+	-ms-transition: all .4s;
+	transition: all .4s;
+}
+
+
+#addAnItem ::-webkit-input-placeholder {
+   color: black !important;
+}
+
+#addAnItem :-moz-placeholder { /* Firefox 18- */
+   color: black !important;  
+}
+
+#addAnItem ::-moz-placeholder {  /* Firefox 19+ */
+   color: black !important;  
+}
+
+#addAnItem :-ms-input-placeholder {  
+   color: black !important;  
+}
+
+/* INVENTORY LIST &  */
+
+strong {
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.item img {
+	float: left;
+}
+
+.itemDescription {
+	position: relative;
+	height: 160px;
+	white-space: nowrap;
+}
+
+.itemDescription span {
+	margin-left: 15px;
+}
+
+.item, .itemActions{
+	width: 49%;
+}
+
+.itemTitle, .itemCreator {
+	font-weight: 400;
+}
+
+.itemTitle {
+	font-size: 18px;
+}
+
+.itemCreator, .itemPrice, .itemStock {
+	display: block;
+	font-size: 16px;
+}
+
+.itemPrice {
+	position: absolute;
+	top: 33%;
+}
+
+.itemStock {
+	position: absolute;
+	top: 55%;
+}
+
+.itemActions {
+	float: left;
+	text-align: right;
+}
+
+.itemQuantity {
+	margin-bottom: 14px;
+}
+
+.panel-body .row {
+	padding: 15px;
+}

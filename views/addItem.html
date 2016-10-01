@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span class="navbar-brand">Work & Co Shopping Cart Challenge</span>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class='active'><a href="#/codeChallenges/work&co">Add an Item</a></li>
+				<li><a href="#/inventory">Inventory List</a></li> 
+				<li><a href="#/basket">Shopping Basket</a></li> 
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container" id="addAnItem">
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 col-xs-6 col-xs-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title">Add An Item</h2>
+				</div>
+				<div class="panel-body" ng-controller="ItemFormController">
+					<form novalidate name='itemForm'>
+						<div class="row">
+							<p class="pull-left">Item Name: </p><input type="text" class="form-control pull-left" placeholder='Enter an item name' required ng-model="item.title">
+						</div>
+						<div class="row">
+							<p class="pull-left">Item Manufacturer: </p><input type="text" class="form-control pull-left" placeholder='Enter a manufacturer' required ng-model="item.manufacturer">
+						</div>
+						<div class="row">
+							<p class="pull-left">Item Price: </p><input type="number" class="form-control pull-left" placeholder='Enter a price' required ng-model="item.price">
+						</div>
+						<div class="row">
+							<p class="pull-left">Item Quantity:</p><input type="number" class="form-control pull-left" placeholder='# of items in stock' required ng-model="item.inventoryQuantity">
+						</div>
+
+						<div class="row">
+							<input type="submit" class="btn btn-primary col-lg-5 col-lg-offset-1" value="Submit" ng-click='update(item)'>
+							<input type="button" class="btn btn-danger col-lg-5" value="Reset" ng-click="reset()">
+						</div>
+					</form>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
