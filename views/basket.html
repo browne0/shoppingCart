@@ -28,7 +28,7 @@
 					</div>
 					<div class="panel-body" ng-controller='InventoryListController'>
 						<strong ng-if='basketList.length == 0'>There seems to be no items in your shopping basket. Click <a href="#/inventory">here</a> to add an item from our inventory.</strong>
-						<div class="row" ng-repeat='item in basketList track by $index'>
+						<div class="row" ng-repeat='item in basketList track by item.name'>
 							<div class="item pull-left">
 								<img src='http://placekitten.com/160/160' alt="">
 								<div class="itemDescription">
@@ -38,11 +38,11 @@
 										<span class="itemCreator">by {{ item.manufacturer }}</span>
 
 										<span class="itemPrice">
-											<b>{{ item.price * item.basketQuantity | currency}}</b>
+											<b>{{ item.price * item.checkoutQuantity | currency}}</b>
 										</span>
 
 										<span class="itemStock">
-											Purchasing: {{ item.basketQuantity }} units
+											Purchasing: {{ item.checkoutQuantity }} units
 										</span>
 									</label>
 								</div>

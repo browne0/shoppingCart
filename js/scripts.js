@@ -31,7 +31,23 @@ app.service('sharedItems', [function() {
 
 	// Helper Methods
 	this.addItemToArray = function(item) {
-		itemArray.push(item);
+		if (itemArray.length == 0) {
+			itemArray.push(item);
+		}
+		else {
+			for (var i = 0; i < itemArray.length; i++) {
+			if (itemArray[i].title == item.title && itemArray[i].manufacturer == item.manufacturer) {
+				itemArray[i].inventoryQuantity += item.inventoryQuantity;
+				break;
+			}
+			else {
+				itemArray.checkoutQuantity = 0;
+				itemArray.push(item);
+				break;
+			}
+			}
+		}
+		
 		return [].concat(itemArray);
 	};
 
@@ -45,7 +61,7 @@ app.service('sharedItems', [function() {
 	};
 
 	this.updateItemArray = function(array, index) {
-		array[index].inventoryQuantity += array[index].basketQuantity;
+		array[index].inventoryQuantity += array[index].checkoutQuantity;
 		return [].concat(itemArray);
 	}
 }]);
@@ -61,7 +77,23 @@ app.service('shoppingBasket', [function() {
 	};
 
 	this.addItemToBasket = function(item) {
-		basketArray.push(item);
+		if (basketArray.length == 0) {
+			item.checkoutQuantity = item.basketQuantity;
+			basketArray.push(item);
+		}
+		else {
+			for (var i = 0; i < basketArray.length; i++) {
+			if (basketArray[i].title == item.title && basketArray[i].manufacturer == item.manufacturer) {
+				basketArray[i].checkoutQuantity += basketArray[i].basketQuantity;
+				console.log(basketArray[i].basketQuantity);
+				// basketArray[i].inventoryQuantity -= item.basketQuantity;
+			}
+			else {
+				basketArray.push(item);
+				break;
+			}
+			}
+		}
 		return [].concat(basketArray)
 	};
 
@@ -79,6 +111,7 @@ app.controller('ItemFormController', ['$scope', 'sharedItems', function($scope, 
 
 	$scope.update = function(item) {
 		if ($scope.itemForm.$valid) {
+			item.checkoutQuantity = 0;
 			sharedItems.addItemToArray(item)
 			$scope.item = null;
 		}
@@ -100,8 +133,7 @@ app.controller('InventoryListController', ['$scope', 'sharedItems', 'shoppingBas
 			item.inventoryQuantity -= 1;
 		}
 		shoppingBasket.addItemToBasket(item);
-		item.basketQuantity.value = '';
-		$scope.basketList = shoppingBasket.getBasketArray();
+		item.basketQuantity = '';
 	};
 }]);
 
@@ -110,7 +142,6 @@ app.controller('ShoppingBasketController',['$scope', 'sharedItems', 'shoppingBas
 
 	$scope.removeFromBasket = function(array, index, item) {
 		sharedItems.updateItemArray(array, index);
-		array[index].basketQuantity = 0;
 		shoppingBasket.removeFromBasket(index, item);
 		window.location.href='#/inventory';
 	}
