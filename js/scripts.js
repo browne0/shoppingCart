@@ -77,21 +77,25 @@ app.service('shoppingBasket', [function() {
 	};
 
 	this.addItemToBasket = function(item) {
+		var found = false;
+
 		if (basketArray.length == 0) {
 			item.checkoutQuantity = item.basketQuantity;
 			basketArray.push(item);
 		}
 		else {
+			// update checkout quantity for existing item
 			for (var i = 0; i < basketArray.length; i++) {
 			if (basketArray[i].title == item.title && basketArray[i].manufacturer == item.manufacturer) {
+				found = true;
 				basketArray[i].checkoutQuantity += basketArray[i].basketQuantity;
-				console.log(basketArray[i].basketQuantity);
-				// basketArray[i].inventoryQuantity -= item.basketQuantity;
 			}
-			else {
+			
+			}
+			// if it's not found its a new item
+			if (!found) {
+				item.checkoutQuantity = item.basketQuantity;
 				basketArray.push(item);
-				break;
-			}
 			}
 		}
 		return [].concat(basketArray)
